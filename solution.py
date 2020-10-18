@@ -133,6 +133,8 @@ def ping(host, timeout=1):
         print(sum(stats))
         packet_avg = sum(stats)/len(stats)
         vars = [str(round(packet_min, 2)), str(round(packet_avg, 2)), str(round(packet_max, 2)),str(round(stdev(stats), 2))]
+    else:
+        vars = ['0', '0.0', '0', '0.0']
     return vars
 
 if __name__ == '__main__':
