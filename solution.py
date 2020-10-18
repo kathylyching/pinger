@@ -58,8 +58,9 @@ def receiveOnePing(mySocket, ID, timeout, destAddr):
                 bytesinDouble = struct.calcsize("d") 
                 timeSent = struct.unpack("d", recPacket[28:28 + bytesinDouble])[0] 
                 rtt = timeReceived - timeSent
-                stats.append(rtt)
-                return (rtt * 1000)
+                stats.append(rtt * 1000)
+                return "Reply from " + destAddr + ": bytes=" +  str(bytesinDouble) + " time=" + str(rtt * 1000) + "ms TTL=" + str(icmph[5])
+                #return (rtt * 1000)
                
                 
 
@@ -124,7 +125,7 @@ def ping(host, timeout=1):
     # Send ping requests to a server separated by approximately one second
     for i in range(0,4):
         delay = doOnePing(dest, timeout)
-        #print(delay)
+        print(delay)
         time.sleep(1)  # one second
 
     if len(stats) > 0:
